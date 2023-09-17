@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_18.Commands;
+using YoutubeExplode.Converter;
+using YoutubeExplode.Search;
 
 namespace Project_18
 {

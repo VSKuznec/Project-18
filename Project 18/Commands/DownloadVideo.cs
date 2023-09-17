@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Search;
+using YoutubeExplode.Videos.Streams;
 
 namespace Project_18.Commands
 {
@@ -23,13 +24,14 @@ namespace Project_18.Commands
 
         public override async void Run()
         {
-            Console.WriteLine("\nНачалось скачивание видео!");
+            Console.WriteLine("\nVideo start to download!");
             var youtube = new YoutubeClient();
             var video = await youtube.Videos.GetAsync(urlVideo);
-            string nameVideo = "C:\\Users\\sevac\\source\\repos\\Project 18\\Project 18\\bin\\Debug\\net7.0.mp4";
+            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
+            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
-            await youtube.Videos.DownloadAsync(urlVideo, nameVideo, builder => builder.SetPreset(ConversionPreset.UltraFast)).ConfigureAwait(false);
-            receiver.Operation($"Видео скачано в файл: {nameVideo}");
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, $"video.{streamInfo.Container}");
+            Console.WriteLine("Video downloaded!");
         }
     }
 }

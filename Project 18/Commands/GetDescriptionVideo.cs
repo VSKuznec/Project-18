@@ -22,13 +22,13 @@ namespace Project_18.Commands
 
         public override void Run()
         {
-            Console.WriteLine("\nОписание видео:");
+            Console.WriteLine("\nVideo description:");
             var youtube = new YoutubeClient();
 
             var video = youtube.Videos.GetAsync(urlVideo).Result;
-            Console.WriteLine($"Название видео: {video.Title}");
-            Console.WriteLine($"Название канала: {video.Author.Title}");
-            Console.WriteLine($"Длительность видео: {video.Duration}");
+            Console.WriteLine($"Video title: {video.Title}");
+            Console.WriteLine($"Channel name: {video.Author.Title}");
+            Console.WriteLine($"Video duration: {video.Duration}");
             receiver.Operation();
         }
     }

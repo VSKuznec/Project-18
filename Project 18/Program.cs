@@ -1,4 +1,6 @@
 ﻿using Project_18.Commands;
+using YoutubeExplode.Converter;
+using YoutubeExplode.Search;
 
 namespace Project_18
 {
@@ -6,7 +8,7 @@ namespace Project_18
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите ссылку на Youtube-видео:");
+            Console.WriteLine("Enter the link to the Youtube-video:");
             string url = Console.ReadLine();
 
             var sender = new Sender();
@@ -18,6 +20,8 @@ namespace Project_18
 
             sender.SetCommand(new DownloadVideo(receiver, url));
             sender.Run();
+
+            Console.ReadKey();
         }
     }
 }
